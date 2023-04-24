@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "530811432231",
+    "project_id": "pilot-project-esms",
+    "storage_bucket": "pilot-project-esms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530811432231:android:e12fff19856fae656f0d02",
+        "android_client_info": {
+          "package_name": "com.example.firebase_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530811432231-2nho592tefrt1s0bs31lqtcsgpjoknmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBtPXGQBDa83pRHtlxC1DFNbGZbDwO6-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530811432231-2nho592tefrt1s0bs31lqtcsgpjoknmj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "530811432231-2k74r5g9nangl5d0j9me3koclt37s1oo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseFlutterApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
