@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_flutter_app/view/home_page.dart';
+import 'package:firebase_flutter_app/view/register_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,22 +15,30 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
 
+  navigationToHome() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
+  }
+
+  navigationToRegister() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+  }
+
   void checkAuthentication() async {
     try {
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
               email: _mailController.text, password: _passwordController.text);
       if (userCredential != null) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-            (route) => false);
+        navigationToHome();
       }
     } on FirebaseAuthException catch (e) {
+      print(e.code);
       switch (e.code) {
-        case "invalid-email":
+        case "user-not-found":
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Ops, e-mail incorrect."),
+            content: Text("Ops, user not found."),
             backgroundColor: Colors.redAccent,
           ));
           break;
@@ -66,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: _mailController,
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.mail),
                   hintText: 'Writing your E-mail address here.',
-                  labelText: 'Name *',
+                  labelText: 'E-mail *',
                 ),
               ),
               TextFormField(
@@ -81,10 +88,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               ElevatedButton(
+                onPressed: () {
+                  checkAuthentication();
+                },
+                child: const Text("Login"),
+              ),
+              TextButton(
                   onPressed: () {
-                    checkAuthentication();
+                    navigationToRegister();
                   },
-                  child: const Text("Login"))
+                  child: const Text("Criar Conta"))
             ],
           ),
         ),
